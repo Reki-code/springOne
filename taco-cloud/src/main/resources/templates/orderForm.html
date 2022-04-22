@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http:/ /www.w3.org/1999/xhtml" xmlns:th="http:/ /www.thymeleaf.org">
+
+<head>
+  <title>Taco Cloud</title>
+</head>
+
+<body>
+  <form method="POST" th:actions="@{/orders}" th:object="${tacoOrder}">
+    <h1>Order your taco creations!</h1>
+    <h3>Your tacos is this order:</h3>
+    <a th:href="@{/design}" id="another">Design another taco</a>
+    <ul>
+      <li th:each="taco: ${tacoOrder.tacos}">
+        <span th:text="${taco.name}">taco name</span>
+      </li>
+    </ul>
+  </form>
+</body>
+
+</html>
