@@ -1,5 +1,8 @@
 package me.rekii.tacocloud;
 
-public interface OrderRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
+    @SuppressWarnings("unchecked")
     TacoOrder save(TacoOrder order);
 }
