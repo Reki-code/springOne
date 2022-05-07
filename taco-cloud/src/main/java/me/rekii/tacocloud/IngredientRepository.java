@@ -10,5 +10,6 @@ public interface IngredientRepository extends CrudRepository<Ingredient, String>
 
     Optional<Ingredient> findById(String id);
 
+    @SuppressWarnings("unchecked")
     Ingredient save(Ingredient ingredient);
 }
