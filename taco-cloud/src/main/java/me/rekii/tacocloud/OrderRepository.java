@@ -3,7 +3,6 @@ package me.rekii.tacocloud;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
