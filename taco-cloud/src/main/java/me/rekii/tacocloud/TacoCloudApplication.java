@@ -14,7 +14,6 @@ public class TacoCloudApplication {
 		SpringApplication.run(TacoCloudApplication.class, args);
 	}
 
-
 	@Bean
 	public CommandLineRunner dataLoader(IngredientRepository repo) {
 		return args -> {
