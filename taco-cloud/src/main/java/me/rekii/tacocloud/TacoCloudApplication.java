@@ -5,7 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import me.rekii.tacocloud.Ingredient.Type;;
+import me.rekii.tacocloud.Ingredient.Type;
+import me.rekii.tacocloud.data.IngredientRepository;;
 
 @SpringBootApplication
 public class TacoCloudApplication {

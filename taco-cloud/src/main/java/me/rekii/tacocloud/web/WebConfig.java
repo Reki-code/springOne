@@ -1,4 +1,4 @@
-package me.rekii.tacocloud;
+package me.rekii.tacocloud.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

@@ -1,4 +1,4 @@
-package me.rekii.tacocloud;
+package me.rekii.tacocloud.security;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -10,13 +10,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import lombok.extern.log4j.Log4j2;
+import me.rekii.tacocloud.User;
+import me.rekii.tacocloud.data.UserRepository;
+
+@Log4j2
 @Configuration
 public class SecurityConfig {
 
     @Bean
     public CommandLineRunner userLoader(PasswordEncoder passwordEncoder, UserRepository userRepo) {
         return args -> {
-            User user = new User("togashi", passwordEncoder.encode("togashi"), "fullname", "street", "city", "state", "zip", "phoneNumber");
+            User user = new User("togashi", passwordEncoder.encode("togashi"), "fullname", "street", "city", "state",
+                    "zip", "phoneNumber");
             userRepo.save(user);
         };
     }
@@ -41,23 +47,19 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeRequests()
-                .antMatchers("/design", "/orders")
-                .hasRole("USER")
-                .antMatchers("/**")
-                .permitAll()
+                .antMatchers("/design", "/orders").access("hasRole('USER')")
+                .antMatchers("/", "/**").access("permitAll")
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/design")
-                .usernameParameter("username")
-                .passwordParameter("password")
+                .and()
+                .logout()
+                .logoutSuccessUrl("/")
                 // Make H2-Console non-secured; for debug purposes
                 .and()
-                .csrf()
-                .ignoringAntMatchers("/h2-console/**")
+                .csrf().disable()
                 // Allow pages to be loaded in frames from the same origin; needed for
                 // H2-Console
-                .and()
                 .headers()
                 .frameOptions()
                 .sameOrigin()

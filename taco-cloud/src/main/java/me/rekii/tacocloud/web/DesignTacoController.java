@@ -1,4 +1,4 @@
-package me.rekii.tacocloud;
+package me.rekii.tacocloud.web;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import lombok.extern.slf4j.Slf4j;
+import me.rekii.tacocloud.Ingredient;
+import me.rekii.tacocloud.Taco;
+import me.rekii.tacocloud.TacoOrder;
 import me.rekii.tacocloud.Ingredient.Type;
+import me.rekii.tacocloud.data.IngredientRepository;
 
 @Slf4j
 @Controller
@@ -68,6 +72,7 @@ public class DesignTacoController {
     @PostMapping
     public String processTaco(
             @Valid Taco taco, Errors errors, @ModelAttribute TacoOrder tacoOrder) {
+        log.info("   --- Saving taco");
         if (errors.hasErrors()) {
             return "design";
         }

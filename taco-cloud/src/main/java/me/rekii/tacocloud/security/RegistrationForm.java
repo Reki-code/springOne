@@ -1,8 +1,9 @@
-package me.rekii.tacocloud;
+package me.rekii.tacocloud.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lombok.Data;
+import me.rekii.tacocloud.User;
 
 @Data
 public class RegistrationForm {
