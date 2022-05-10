@@ -1,0 +1,18 @@
+GET http://localhost:8080/api/tacos?recent
+
+###
+GET http://localhost:8080/api/tacos/2
+
+###
+GET http://localhost:8080/api/tacos/-1
+
+###
+POST http://localhost:8080/api/tacos
+Content-type: application/json
+
+{
+    "name": "taco-name",
+    "ingredients": [
+        "FLTO", "COTO"
+    ]
+}

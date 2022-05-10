@@ -2,10 +2,6 @@ spring:
   datasource:
     generate-unique-name: false
     name: tacocloud
-  security:
-    user:
-      name: rikka
-      password: rikka
 logging:
   level:
     root: WARN

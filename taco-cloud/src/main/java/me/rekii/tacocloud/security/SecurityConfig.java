@@ -1,6 +1,5 @@
 package me.rekii.tacocloud.security;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -12,23 +11,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import lombok.extern.log4j.Log4j2;
 import me.rekii.tacocloud.User;
 import me.rekii.tacocloud.data.UserRepository;
 
-@Log4j2
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled=true)
 public class SecurityConfig {
-
-    @Bean
-    public CommandLineRunner userLoader(PasswordEncoder passwordEncoder, UserRepository userRepo) {
-        return args -> {
-            User user = new User("togashi", passwordEncoder.encode("togashi"), "fullname", "street", "city", "state",
-                    "zip", "phoneNumber");
-            userRepo.save(user);
-        };
-    }
 
     @Bean
     public PasswordEncoder encoder() {
