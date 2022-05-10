@@ -1,0 +1,12 @@
+GET http://localhost:8080/data-api/
+
+###
+GET http://localhost:8080/data-api/ingredients
+
+###
+GET http://localhost:8080/data-api/ingredients/FLTO
+
+###
+GET http://localhost:8080/data-api/tacos
+    ?size=1
+    &sort=createdAt,desc
