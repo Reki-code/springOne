@@ -3,6 +3,8 @@ package me.rekii.tacocloud.security;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,6 +18,7 @@ import me.rekii.tacocloud.data.UserRepository;
 
 @Log4j2
 @Configuration
+@EnableGlobalMethodSecurity(securedEnabled=true)
 public class SecurityConfig {
 
     @Bean
@@ -48,6 +51,7 @@ public class SecurityConfig {
         return http
                 .authorizeRequests()
                 .antMatchers("/design", "/orders").access("hasRole('USER')")
+                .antMatchers(HttpMethod.POST, "/admin/**").access("hasRole('ADMIN')")
                 .antMatchers("/", "/**").access("permitAll")
                 .and()
                 .formLogin()
